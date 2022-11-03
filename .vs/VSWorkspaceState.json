@@ -1,10 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\MyWebApiApp",
-    "\\MyWebApiApp\\MyWebApiApp",
-    "\\MyWebApiApp\\MyWebApiApp\\obj",
-    "\\MyWebApiApp\\MyWebApiApp\\obj\\Release"
+    ""
   ],
+  "SelectedNode": "\\MyWebApiApp.sln",
   "PreviewInSolutionExplorer": false
 }
