@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using MyWebApiApp.Data;
 using MyWebApiApp.Models;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace MyWebApiApp.Controllers
                 };
                 _context.Add(type);
                 _context.SaveChanges();
-                return Ok(type);
+                return StatusCode(StatusCodes.Status201Created, type);
             }
             catch
             {
@@ -85,7 +86,7 @@ namespace MyWebApiApp.Controllers
                 {
                     _context.Remove(type);
                     _context.SaveChanges();
-                    return Ok();
+                    return StatusCode(StatusCodes.Status200OK);
                 }
                 else
                 {

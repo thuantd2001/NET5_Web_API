@@ -3,8 +3,8 @@
     "",
     "\\MyWebApiApp",
     "\\MyWebApiApp\\MyWebApiApp",
-    "\\MyWebApiApp\\MyWebApiApp\\Data"
+    "\\MyWebApiApp\\MyWebApiApp\\Models"
   ],
-  "SelectedNode": "\\MyWebApiApp\\MyWebApiApp\\Data\\Order.cs",
+  "SelectedNode": "\\MyWebApiApp\\MyWebApiApp\\Models\\TypeModel.cs",
   "PreviewInSolutionExplorer": false
 }
