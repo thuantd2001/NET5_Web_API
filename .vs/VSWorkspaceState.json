@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\MyWebApiApp",
+    "\\MyWebApiApp\\MyWebApiApp",
+    "\\MyWebApiApp\\MyWebApiApp\\Data"
   ],
-  "SelectedNode": "\\MyWebApiApp.sln",
+  "SelectedNode": "\\MyWebApiApp\\MyWebApiApp\\Data\\Order.cs",
   "PreviewInSolutionExplorer": false
 }

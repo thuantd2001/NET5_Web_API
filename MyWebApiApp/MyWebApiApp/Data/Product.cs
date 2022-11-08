@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,6 +21,10 @@ namespace MyWebApiApp.Data
         public int? IdType { get; set; }
         [ForeignKey("IdType")]
         public Type type { get; set; }
-
+        public ICollection<OrderDetail> OrderDetails { get; set; }
+        public Product()
+        {
+            OrderDetails = new HashSet<OrderDetail>();
+        }
     }
 }
