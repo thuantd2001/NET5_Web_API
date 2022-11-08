@@ -12,7 +12,7 @@ namespace MyWebApiApp.Controllers
     {
         private readonly MyDbContext _context;
 
-        public TypeController(MyDbContext context)
+        public TypesController(MyDbContext context)
         {
             _context = context;
         }
