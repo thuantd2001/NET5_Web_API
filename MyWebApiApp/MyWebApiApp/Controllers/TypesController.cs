@@ -1,13 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using MyWebApiApp.Data;
-using MyWebApiApp.Models;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace MyWebApiApp.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+        [Route("api/[controller]")]
+        [ApiController]
     public class TypeController : Controller
     {
         private readonly MyDbContext _context;
@@ -94,7 +91,7 @@ namespace MyWebApiApp.Controllers
                 }
             }
             catch
-            {
+        {
                 return BadRequest();
             }
         }
