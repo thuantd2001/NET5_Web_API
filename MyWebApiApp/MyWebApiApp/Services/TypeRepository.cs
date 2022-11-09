@@ -5,18 +5,18 @@ using System.Linq;
 
 namespace MyWebApiApp.Services
 {
-    public class TypeRespository : ITypeRepository
+    public class TypeRepository : ITypeRepository
     {
         private readonly MyDbContext _context;
-        public TypeRespository(MyDbContext context)
+        public TypeRepository(MyDbContext context)
         {
             _context = context;
         }
-        public TypeVM addType(TypeVM type)
+        public TypeVM addType(TypeModel type)
         {
             var _type = new Type
             {
-                NameType = type.NameType,
+                NameType = type.Name,
             };
             _context.Add(_type);
             _context.SaveChanges();

@@ -7,8 +7,9 @@ namespace MyWebApiApp.Services
     {
         List<TypeVM> getAllTypes();
         TypeVM getById(int id);
-        TypeVM addType(TypeVM type);
+        TypeVM addType(TypeModel type);
         void updateType(TypeVM type);
         void deleteType(int id);
+
     }
 }
