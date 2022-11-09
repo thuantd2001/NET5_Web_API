@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using MyWebApiApp.Data;
+using MyWebApiApp.Services;
 
 namespace MyWebApiApp
 {
@@ -27,6 +28,10 @@ namespace MyWebApiApp
             {
                 option.UseSqlServer(Configuration.GetConnectionString("MyDB"));
             });
+
+            //services.AddScoped<ITypeRepository, TypeRepository>();
+            services.AddScoped<ITypeRepository, TypeReponsitoryInMemory>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyWebApiApp", Version = "v1" });
