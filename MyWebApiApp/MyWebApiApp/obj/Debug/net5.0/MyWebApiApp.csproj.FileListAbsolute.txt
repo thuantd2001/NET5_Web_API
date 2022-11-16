@@ -81,7 +81,6 @@ D:\Code\NET\NET5_Web_API\MyWebApiApp\MyWebApiApp\bin\Debug\net5.0\Microsoft.Iden
 D:\Code\NET\NET5_Web_API\MyWebApiApp\MyWebApiApp\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 D:\Code\NET\NET5_Web_API\MyWebApiApp\MyWebApiApp\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 D:\Code\NET\NET5_Web_API\MyWebApiApp\MyWebApiApp\bin\Debug\net5.0\Microsoft.OpenApi.dll
-D:\Code\NET\NET5_Web_API\MyWebApiApp\MyWebApiApp\bin\Debug\net5.0\Newtonsoft.Json.dll
 D:\Code\NET\NET5_Web_API\MyWebApiApp\MyWebApiApp\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\Code\NET\NET5_Web_API\MyWebApiApp\MyWebApiApp\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Code\NET\NET5_Web_API\MyWebApiApp\MyWebApiApp\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -123,3 +122,4 @@ D:\Code\NET\NET5_Web_API\MyWebApiApp\MyWebApiApp\obj\Debug\net5.0\refint\MyWebAp
 D:\Code\NET\NET5_Web_API\MyWebApiApp\MyWebApiApp\obj\Debug\net5.0\MyWebApiApp.pdb
 D:\Code\NET\NET5_Web_API\MyWebApiApp\MyWebApiApp\obj\Debug\net5.0\MyWebApiApp.genruntimeconfig.cache
 D:\Code\NET\NET5_Web_API\MyWebApiApp\MyWebApiApp\obj\Debug\net5.0\ref\MyWebApiApp.dll
+D:\Code\NET\NET5_Web_API\MyWebApiApp\MyWebApiApp\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

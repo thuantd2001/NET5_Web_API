@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyWebApiApp.Data;
 using MyWebApiApp.Models;
@@ -35,6 +36,7 @@ namespace MyWebApiApp.Controllers
             else return NotFound();
         }
         [HttpPost]
+        [Authorize]
         public IActionResult CreateNew(TypeModel model)
         {
             try
