@@ -10,8 +10,8 @@ using MyWebApiApp.Data;
 namespace MyWebApiApp.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20221107150425_AddOrderDetail")]
-    partial class AddOrderDetail
+    [Migration("20221115135914_DBinit")]
+    partial class DBinit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
