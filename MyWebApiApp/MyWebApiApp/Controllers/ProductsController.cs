@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyWebApiApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using MyWebApiApp.Services;
 
 namespace MyWebApiApp.Controllers
 {
@@ -10,90 +7,25 @@ namespace MyWebApiApp.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        public static List<Product> products = new List<Product>();
+        private readonly IProductRepository _productRepository;
+
+        public ProductsController(IProductRepository productRepository)
+        {
+            _productRepository = productRepository;
+        }
         [HttpGet]
-        public IActionResult GetAll()
-        {
-            return Ok(products);
-        }
-
-        [HttpGet("{id}")]
-        public IActionResult GetById(string id)
-        {
-
-            try
-            {
-                var product = products.SingleOrDefault(p => p.Id == Guid.Parse(id));
-                if (product == null)
-                {
-                    return NotFound();
-                }
-                return Ok(product);
-            }
-            catch
-            {
-                return BadRequest();
-            }
-        }
-
-        [HttpPost]
-        public IActionResult Create(CategoryProduct categoryProduct)
-        {
-            var product = new Product
-            {
-                Id = Guid.NewGuid(),
-                Name = categoryProduct.Name,
-                Price = categoryProduct.Price,
-
-            };
-            products.Add(product);
-            return Ok(new
-            {
-                Success = true,
-                Data = product,
-            });
-        }
-        [HttpPut("{id}")]
-        public IActionResult Edit(string id, Product newProduct)
+        public IActionResult getAllProducts(string search, double? from, double? to, string sortBy, int page = 1)
         {
             try
             {
-                var product = products.SingleOrDefault(p => p.Id == Guid.Parse(id));
-                if (product == null)
-                {
-                    return NotFound();
-                }
-                if (id != product.Id.ToString())
-                {
-                    return BadRequest();
-                }
-                product.Name = newProduct.Name;
-                product.Price = newProduct.Price;
-                return Ok(product);
+                var result = _productRepository.getAll(search, from, to, sortBy, page);
+                return Ok(result);
             }
             catch
             {
-                return BadRequest();
+                return BadRequest("cant get product");
             }
 
-        }
-        [HttpDelete("{id}")]
-        public IActionResult Remove(string id)
-        {
-            try
-            {
-                var product = products.SingleOrDefault(p => p.Id == Guid.Parse(id));
-                if (product == null)
-                {
-                    return NotFound();
-                }
-                products.Remove(product);
-                return Ok(product);
-            }
-            catch
-            {
-                return BadRequest();
-            }
         }
     }
 }

@@ -31,7 +31,7 @@ namespace MyWebApiApp
 
             //services.AddScoped<ITypeRepository, TypeRepository>();
             services.AddScoped<ITypeRepository, TypeReponsitoryInMemory>();
-
+            services.AddScoped<IProductRepository, ProductRepository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyWebApiApp", Version = "v1" });
