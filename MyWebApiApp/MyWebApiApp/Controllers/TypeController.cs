@@ -1,51 +1,58 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MyWebApiApp.Data;
 using MyWebApiApp.Models;
-using System.Linq;
+using MyWebApiApp.Services;
 
 namespace MyWebApiApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TypeController : Controller
+    public class TypeController : ControllerBase
     {
-        private readonly MyDbContext _context;
+        private readonly ITypeRepository _typeRepository;
 
-        public TypeController(MyDbContext context)
+        public TypeController(ITypeRepository typeRepository)
         {
-            _context = context;
+            _typeRepository = typeRepository;
         }
+
         [HttpGet]
-        public IActionResult GetAll()
-        {
-            var listType = _context.Types.ToList();
-            return Ok(listType);
-
-        }
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
-        {
-            var type = _context.Types.SingleOrDefault(
-                       t => t.IdType == id);
-            if (type != null)
-            {
-                return Ok(type);
-            }
-            else return NotFound();
-        }
-        [HttpPost]
-        public IActionResult CreateNew(TypeModel model)
+        public IActionResult getAll()
         {
             try
             {
-                var type = new Type
+                return Ok(_typeRepository.getAllTypes());
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+        [HttpGet("{id}")]
+        public IActionResult getById(int id)
+        {
+            try
+            {
+                var data = _typeRepository.getById(id);
+                if (data != null)
                 {
-                    NameType = model.Name
-                };
-                _context.Add(type);
-                _context.SaveChanges();
-                return StatusCode(StatusCodes.Status201Created, type);
+                    return Ok(data);
+                }
+                else
+                {
+                    return NotFound();
+                }
+
+            }
+            catch { return StatusCode(StatusCodes.Status500InternalServerError); }
+        }
+        [HttpDelete("{id}")]
+        public IActionResult deleteType(int id)
+        {
+            try
+            {
+                _typeRepository.deleteType(id);
+                return Ok();
             }
             catch
             {
@@ -53,49 +60,32 @@ namespace MyWebApiApp.Controllers
             }
         }
         [HttpPut("{id}")]
-        public IActionResult updateById(int id, TypeModel model)
+        public IActionResult update(int id, TypeVM type)
         {
+            if (id != type.IdType)
+            {
+                return BadRequest();
+            }
             try
             {
-                var type = _context.Types.SingleOrDefault(
-                       t => t.IdType == id);
-                if (type != null)
-                {
-                    type.NameType = model.Name;
-                    _context.SaveChanges();
-                    return Ok();
-                }
-                else
-                {
-                    return NotFound();
-                }
+                _typeRepository.updateType(type);
+                return NoContent();
             }
             catch
             {
-                return BadRequest();
+                return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpPost]
+        public IActionResult Add(TypeModel type)
         {
             try
             {
-                var type = _context.Types.SingleOrDefault(
-                       t => t.IdType == id);
-                if (type != null)
-                {
-                    _context.Remove(type);
-                    _context.SaveChanges();
-                    return StatusCode(StatusCodes.Status200OK);
-                }
-                else
-                {
-                    return NotFound();
-                }
+                return Ok(_typeRepository.addType(type));
             }
             catch
             {
-                return BadRequest();
+                return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
     }

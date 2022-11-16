@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyWebApiApp.Migrations
 {
-    public partial class AddOrderDetail : Migration
+    public partial class DBinit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,6 +22,41 @@ namespace MyWebApiApp.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Order", x => x.OrderID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Type",
+                columns: table => new
+                {
+                    IdType = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NameType = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Type", x => x.IdType);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Product",
+                columns: table => new
+                {
+                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    NameProduct = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    Discount = table.Column<byte>(type: "tinyint", nullable: false),
+                    IdType = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Product", x => x.ProductId);
+                    table.ForeignKey(
+                        name: "FK_Product_Type_IdType",
+                        column: x => x.IdType,
+                        principalTable: "Type",
+                        principalColumn: "IdType",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -50,6 +85,11 @@ namespace MyWebApiApp.Migrations
                         principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_IdType",
+                table: "Product",
+                column: "IdType");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -59,6 +99,12 @@ namespace MyWebApiApp.Migrations
 
             migrationBuilder.DropTable(
                 name: "Order");
+
+            migrationBuilder.DropTable(
+                name: "Product");
+
+            migrationBuilder.DropTable(
+                name: "Type");
         }
     }
 }

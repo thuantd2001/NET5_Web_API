@@ -3,8 +3,9 @@
     "",
     "\\MyWebApiApp",
     "\\MyWebApiApp\\MyWebApiApp",
+    "\\MyWebApiApp\\MyWebApiApp\\Controllers",
     "\\MyWebApiApp\\MyWebApiApp\\Models"
   ],
-  "SelectedNode": "\\MyWebApiApp\\MyWebApiApp\\Models\\TypeModel.cs",
+  "SelectedNode": "\\MyWebApiApp\\MyWebApiApp\\Controllers\\ProductsController.cs",
   "PreviewInSolutionExplorer": false
 }

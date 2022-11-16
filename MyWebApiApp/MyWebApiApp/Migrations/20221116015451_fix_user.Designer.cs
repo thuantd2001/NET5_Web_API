@@ -10,8 +10,8 @@ using MyWebApiApp.Data;
 namespace MyWebApiApp.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20221107150425_AddOrderDetail")]
-    partial class AddOrderDetail
+    [Migration("20221116015451_fix_user")]
+    partial class fix_user
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -121,6 +121,41 @@ namespace MyWebApiApp.Migrations
                     b.HasKey("IdType");
 
                     b.ToTable("Type");
+                });
+
+            modelBuilder.Entity("MyWebApiApp.Data.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserName")
+                        .IsUnique();
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("MyWebApiApp.Data.OrderDetail", b =>

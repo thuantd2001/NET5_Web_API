@@ -10,6 +10,7 @@ namespace MyWebApiApp.Data
         public DbSet<Type> Types { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<User> Users { get; set; }
         #endregion
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -35,6 +36,16 @@ namespace MyWebApiApp.Data
                 e.HasOne(p => p.Product).WithMany(p => p.OrderDetails)
                 .HasForeignKey(p => p.OrderID)
                 .HasConstraintName("FK_OrderDetail_Product");
+            });
+            modelBuilder.Entity<User>(e =>
+            {
+                e.HasKey(e => e.Id);
+                e.Property(e => e.Id).ValueGeneratedOnAdd();
+                e.HasIndex(e => e.UserName ).IsUnique();
+                e.Property(e => e.UserName).IsRequired().HasMaxLength(100);
+                e.Property(e => e.Password).IsRequired().HasMaxLength(100);
+                e.Property(e => e.Name).IsRequired().HasMaxLength(150);
+                e.Property(e => e.Email).IsRequired().HasMaxLength(150);
             });
         }
     }
