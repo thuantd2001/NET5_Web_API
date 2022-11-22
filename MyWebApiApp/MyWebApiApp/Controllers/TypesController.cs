@@ -36,7 +36,7 @@ namespace MyWebApiApp.Controllers
             else return NotFound();
         }
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public IActionResult CreateNew(TypeModel model)
         {
             try

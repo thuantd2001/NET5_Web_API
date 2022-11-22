@@ -11,6 +11,7 @@ namespace MyWebApiApp.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<RefreshToken> RefeshTokens { get; set; }
         #endregion
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -41,12 +42,14 @@ namespace MyWebApiApp.Data
             {
                 e.HasKey(e => e.Id);
                 e.Property(e => e.Id).ValueGeneratedOnAdd();
-                e.HasIndex(e => e.UserName ).IsUnique();
+                e.HasIndex(e => e.UserName).IsUnique();
                 e.Property(e => e.UserName).IsRequired().HasMaxLength(100);
                 e.Property(e => e.Password).IsRequired().HasMaxLength(100);
                 e.Property(e => e.Name).IsRequired().HasMaxLength(150);
                 e.Property(e => e.Email).IsRequired().HasMaxLength(150);
             });
+
+
         }
     }
 }
